@@ -1,0 +1,59 @@
+@import "variaveis.scss";
+@mixin borda($cor, $expessura) {    //borda de algum container, dividir o main do resto
+    border: $expessura solid $cor;
+}
+@mixin flex-config($align, $justify, $direction) { //configuração do flex, pois é bastante usado
+    display: flex;
+    text-align: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+}
+@mixin input_btn($largura, $altura, $radius) {  //configuração de input e botão
+    width: $largura;
+    height: $altura;
+    border-radius: $radius;
+}
+
+@mixin color_config($background, $color) {  //
+    background: $background;
+    color: $color;
+}
+header{
+    @include flex-config(center,center,none );}
+main{
+    display: grid;
+    grid-template-areas: 
+    "lado principal"
+    "lado principal";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    @include borda(lightgray,1px);
+    & aside{
+        grid-area: lado;
+        @include flex-config(center,center,column );
+        @include color_config($cor-azul,white);
+        & a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+    & section{
+        grid-area: principal; 
+        @include flex-config(center,center,column );  
+        & p{
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        & input{
+            background-color: whitesmoke;
+            @include input_btn(70%,30px ,8px );
+            margin-bottom: 20px;
+        } 
+        & button{
+            @include input_btn(90px,30px ,8px );
+            margin: 10px;
+            float: right;
+        }
+    }
+}
+
